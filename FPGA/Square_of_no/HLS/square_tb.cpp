@@ -37,7 +37,6 @@ int main()
 	}
 	square_hw(in_vec,out_vec);
 
-
 	for(int i=0;i<SIZE;i++)
 	{
 		local_write=out_vec.read();
