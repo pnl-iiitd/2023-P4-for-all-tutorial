@@ -17,7 +17,6 @@ int main()
 	{
 		input[i]=i;
 	}
-//	square_hw(input,output_hw);
 	square_sw(input,output_sw);
 
 	hls::stream<axis_data> in_vec,out_vec;
