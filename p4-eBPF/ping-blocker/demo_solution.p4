@@ -92,11 +92,19 @@ parser DemoIngressParser(packet_in packet, out headers hdr, inout metadata meta,
     }
 
     state parse_ethernet {
-        // Complete the parse ethernet function
+        packet.extract(hdr.ethernet);
+	transition select(hdr.ethernet.ether_type) {
+		ETH_TYPE_IPV4: parse_ipv4;
+		default: accept;
+	}
     }
     
     state parse_ipv4 {
-        // Complete the parse ipv4 function
+	packet.extract(hdr.ipv4);
+	transition select(hdr.ipv4.protocol) {
+		PROTO_ICMP: reject;
+		default: accept;
+	}
     }
 }
 
