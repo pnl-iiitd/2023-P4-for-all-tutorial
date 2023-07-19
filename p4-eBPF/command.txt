@@ -1,0 +1,8 @@
+sudo ip netns exec vnet0 ip link set veth0 xdpgeneric off
+sudo ip netns exec vnet0 ip link set veth0 xdpgeneric obj demo.o sec xdp_ingress/xdp-ingress
+
+sudo ip netns exec vnet0 iperf -s -p 5000
+sudo ip netns exec vnet1 iperf -c 10.0.0.1 -p 5000 -t10
+
+sudo ip netns exec vnet0 iperf -s -p 6000
+sudo ip netns exec vnet1 iperf -c 10.0.0.1 -p 6000 -t10
